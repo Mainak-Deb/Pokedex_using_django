@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <link rel="stylesheet" href= "{% static 'css/pokemon.css' %}" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<body >
+<div class="pokebox"></div>
+    <header>
+        <img class="logo" title="Reset Game" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/2000px-International_Pok%C3%A9mon_logo.svg.png" alt="Pokemon">
+      </header>
+      
+    <form class="searchbox"  action="/pk/" method="post" style="margin:auto;max-width:60vw">{% csrf_token %}
+
+       <input class="textBox" type="text" id="pksearch"  name="pksearch" placeholder="search the pokemon name here" />
+        <button type="submit"><i class="fa fa-search"></i></button>
+      
+    </form> 
+    <br/><br/>
+    <h1 style="font-size:min(90px,12vw); color: cornsilk;text-align: center;margin: 0px;" >{{names}}</h1><br/><br/>
+    <section class="card-container">
+
+        <div class="card"style="background-color:{{color.0}};" >
+            <h1  class="photohead" style="background-color:{{color.1}};">Official Artwork</h1><br>
+            <img src='{{image}}'  max-width="400px"  width="80%" height="auto" alt="..." >
+            <h1 class="pokeid">#{{poke_id}}</h1> 
+        </div>
+
+        <div class="card"style="background-color:{{color.0}};" >
+            <h1  class="photohead" style="background-color:{{color.1}};"> Dream Artwork</h1><br>
+            <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/{{poke_id}}.svg'  max-width="400px"  width="80%" height="auto" alt="..." >
+            <h1 class="pokeid">#{{poke_id}}</h1> 
+        </div>
+
+        <div class="card"style="background-color:white;" >
+            <h1  class="photohead" style="background-color:{{color.1}};">Bio</h1><br>
+            <h1 class="bio">{{desc}}</h1><br>
+            <table >
+            <tr>
+                <th class="key"> Weight:</th>
+                <th class="value"> {{weight}}kg</th>
+                <th class="key"> Height:</th>
+                <th  class="value"> {{height}} m</th>
+            </tr>
+            <tr>
+                <th class="key"> Egg:</th>
+                <th  class="value">{{egg}}</th>
+                <th class="key">Habitat: </th>
+                <th class="value"> {{habitat}} </th>
+            </tr>
+            <tr>
+                <th class="key"> Shape:</th>
+                <th  class="value"> {{shape}}</th>
+                <th> </th>
+                <th> </th>
+            </tr>
+            <tr>
+                <th class="key"> Abilities:</th>
+                <th  class="value"> {{ability.0}}</th>
+                <th  class="value">{{ability.1}}</th>
+                <th> </th>
+            </tr>
+            </table> 
+        </div>
+
+        <div class="card" style="background-color: rgb(255,255,255);">
+            <h1  class="photohead" style="background-color:{{color.1}};"> Type</h1> <br>
+            <div style="padding: 2vw 0vw 2vw 0vw;">
+            {% for i in type %}
+            <span class="types" style="background-color: {{i.1.1}};"  > <a href="/tp/{{i.0}}"  style="text-decoration: none;color: rgb(255, 255, 255);">  {{i.0}}</a></span>
+            {% endfor %}
+            </div>
+            <br>
+            <hr>
+            <br>
+            <h1  class="photohead" style="background-color:{{color.1}};"> Weakness</h1><br>
+            <div style="padding: 2vw 0vw 2vw 0vw;">
+                {% for i in weak %}
+                    <span class="types" style="background-color: {{i.1.1}};"> <a href="/tp/{{i.0}}"  style="text-decoration: none;color: rgb(255, 255, 255);">  {{i.0}}</a></span>
+                {% endfor %}
+            </div>
+            <br><br>
+        </div>
+
+        <div class="card" style="background-color: rgb(240, 235, 235);padding-bottom: 50px;">
+            <h1  class="photohead" style="background-color:{{color.1}};">Stats</h1><br>
+           
+            <ul class="chart">
+                <li>
+                  <span style="height:{{data.0}}%;background-color: rgba(136, 28, 238, 0.671);" title="HP"></span>
+                </li>
+                <li>
+                  <span style="height:{{data.1}}%;background-color: rgba(10, 200, 252, 0.671);" title="Attack"></span>
+                </li>
+                <li>
+                  <span style="height:{{data.2}}%;background-color: rgba(10, 252, 34, 0.671);" title="Defence"></span>
+                </li>
+               
+             </ul>
+        </div>
+
+        <div class="card" style="background-color: rgb(240, 235, 235);padding-bottom: 50px;">
+            <h1  class="photohead" style="background-color:{{color.1}};">Stats</h1><br>
+           
+            <ul class="chart">
+                <li>
+                  <span style="height:{{data.3}}%;background-color: rgba(252, 224, 10, 0.671);" title="Special Attack"></span>
+                </li>
+                <li>
+                  <span style="height:{{data.4}}%;background-color: rgba(252, 122,0, 0.671);" title="Special Defense"></span>
+                </li>
+                <li>
+                  <span style="height:{{data.5}}%;background-color: rgba(252, 0, 0, 0.671);" title="Speed"></span>
+                </li>
+               
+             </ul>
+        </div>
+
+    </section>
+    <br>  <br>
+    <h1  class="photohead" style="background-color:black;">Evolution Data</h1>
+    <section class="evolution-container" style="background-color:{{color.0}};">
+       
+        {% for i in evolution %}
+            <div class="evolution" style="background-color:{{color.0}};" >
+                <a href="/poke/{{i.1}}" style="text-decoration: none;">
+                    <h1  class="evolvehead" style="background-color:{{color.1}};">{{i.3}}</h1><br>
+                    <img src='{{i.2}}' alt="{{i.2}}"  width="200" height="200"/>
+                    <h1 class="pokeid">#{{i.0}}</h1>
+                    <h1 class="pokename">{{i.1}}</h1>
+                </a> 
+            </div>   
+        {% endfor %}
+    </section>
+    
+</body>
+</html>

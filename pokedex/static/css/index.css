@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400&display=swap');
+
+/* 
+body {
+	background: #EFEFBB;
+	background: -webkit-linear-gradient(to right, #D4D3DD, #EFEFBB);
+	background: linear-gradient(to right, #D4D3DD, #EFEFBB);
+
+
+	font-family: 'Lato';
+	margin: 0;
+} */
+body{
+  background-image: url("http://getwallpapers.com/wallpaper/full/6/0/4/107698.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+
+  font-family: 'Lato';
+  margin: 0;
+  
+}
+header {
+    text-align: center;
+  }
+header img {
+    max-height: 12vw;
+    min-height: 110px;
+    margin: 20px;
+    cursor: pointer;
+  }
+*{
+    box-sizing: border-box;
+  }
+  
+form.searchbox input[type=text] {
+    padding: 10px;
+    font-size: 17px;
+    border: 1px solid rgb(95, 95, 95);
+    border-radius: 45px 0px 0px 45px;
+    float: left;
+    height:55px;
+    width: 80%;
+    background: #f3e1bb;
+  }
+  
+  form.searchbox button {
+    float: left;
+    width: 20%;
+    padding: 10px;
+    background-color: #ff4800;
+    border-radius: 0px 45px  45px 0px ;
+    height:55px;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+  }
+  
+  form.searchbox button:hover {
+    background: #c93204;
+  }
+  
+  form.searchbox::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+.card-container {
+	align-items: start;
+	display: grid;
+	grid-gap: 16px;
+	grid-template-columns: repeat(auto-fit, 300px);
+	justify-content: center;
+}
+
+.card {
+	justify-content: center;
+	border-radius: 25px;
+	color: white;
+	padding: 24px 0 16px;
+	text-align: center;
+  text-shadow: 1px 1px 0 #555;
+ 
+}
+.card:hover{
+  border: 1px solid black;
+}
+
+
+
+.fas {
+	font-size: 50px;
+}
+.pokeid{
+    text-align: center;
+    justify-self: center;
+    border-radius: 45px;
+    background-color: rgba(85, 85, 87, 0.281);
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    padding: 5px;
+   margin: 0px 100px 0px 100px;
+    color: white;
+  }
+  .pokeid:hover{
+    background-color: rgba(85, 85, 87, 0.671);
+  }
+.pokename {
+    
+    letter-spacing: 3px;
+    color: black;
+    font-style: Bold;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 30px;
+}
+
+.poketype{
+  border-radius: 25px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  padding: 10px;
+  width: 100px;
+  height: 40px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 25px;
+  
+}
+.poketype:hover{
+  border: 1px solid black;
+}
+.foot{
+  background-color: floralwhite;
+  font-size: min(20px,4vw);
+  height: 50px;
+  width: 100%;
+ 
+  padding: 5px;
+  text-align: center;
+}
+.pagebutton{
+  border-radius: 10px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  padding: 10px;
+  height: 40px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: min(20px,4vw);
+  
+}

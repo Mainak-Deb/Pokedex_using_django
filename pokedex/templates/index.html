@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href= "{% static 'css/index.css' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="pokebox"></div>
+    <header>
+        <img class="logo" title="Reset Game" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/International_Pok%C3%A9mon_logo.svg/2000px-International_Pok%C3%A9mon_logo.svg.png" alt="Pokemon">
+      </header>
+      
+    <form class="searchbox"  action="/pk/" method="post" style="margin:auto;max-width:60vw">{% csrf_token %}
+
+       <input class="textBox" type="text" id="pksearch"  name="pksearch" placeholder="search the pokemon name here" />
+        <button type="submit"><i class="fa fa-search"></i></button>
+      
+    </form> 
+    <br/><br/>
+
+    
+    <section class="card-container">
+     {% for i in names %}
+       <div class="card" style="background-color: {{i.3.0}};" >
+            <a href="/poke/{{i.1}}" style="text-decoration: none;">
+                <img src="https://pokeres.bastionbot.org/images/pokemon/{{i.0}}.png" alt="{{i.1}}"  width="200" height="200"/>
+                <h1 class="pokeid">#{{i.0}}</h1>
+                <h1 class="pokename">{{i.1}}</h1>
+                <div><a href="/tp/{{i.2}}"  class="poketype" style="background-color: {{i.3.1}};"><span>{{i.2}}</span></a></div>
+            </a>    
+        </div>
+     {% endfor %}
+    </section>
+    </div>
+    <br/><br/>
+    <footer class="foot">
+        <div >
+            
+{% if names.has_previous %}
+    <a href="?page={{ names.previous_page_number }}" class="pagebutton" style="text-decoration: none;float: left; background-color: blue;">previous</a>
+{% endif %}
+
+<span >
+    <b>Page {{ names.number }} of {{ names.paginator.num_pages }}.</b> 
+</span>
+
+{% if names.has_next %}
+    <a href="?page={{ names.next_page_number }}" class="pagebutton" style="text-decoration: none;float: right; background-color: blue;">next</a>
+{% endif %}
+
+        </div>
+</footer>
+</body>
+</html>
